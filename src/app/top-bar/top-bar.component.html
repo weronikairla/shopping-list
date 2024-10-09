@@ -1,8 +1,8 @@
 <header class="top-bar">
   <h1>Shopping List</h1>
   <app-button color="#3498db"
-  color="{{ showAddItem ? 'red' : 'green' }}"
-  label="{{ showAddItem ? 'Close add new item' : 'Add new item' }}"
+  color="{{ showAddItem ? '#3498db' : 'green' }}"
+  label="{{ showAddItem ? 'Go to shopping list' : 'Add new item' }}"
   (btnClick)="toggleAddItem()" ></app-button>
 </header>
 <router-outlet></router-outlet>
