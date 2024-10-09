@@ -1,0 +1,39 @@
+<form *ngIf="showAddItem" class="add-form" >
+    <div class="form-control">
+      <label for="name">Name</label>
+      <input
+        type="text"
+        name="name"
+        [(ngModel)]="name"
+        id="name"
+        placeholder="Add new item"
+        required
+      />
+    </div>
+    <div class="form-control">
+        <label for="quantity">Quantity</label>
+        <input
+          type="number"
+          name="quantity"
+          [(ngModel)]="quantity"
+          id="quantity"
+          placeholder="Add item quantity"
+          min="1"
+        />
+      </div>
+    <div class="form-control">
+        <label for="description">Description</label>
+        <input
+          type="text"
+          name="description"
+          [(ngModel)]="description"
+          id="description"
+          placeholder="Add description"
+        />
+      </div>
+      <app-button color="#3498db"
+      color="green"
+      label="Save new item"
+      (btnClick)="onSubmit()" >
+    </app-button>
+  </form>
