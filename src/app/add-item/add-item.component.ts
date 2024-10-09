@@ -2,6 +2,8 @@ import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { Item } from '../model/item.model';
 import { Subscription } from 'rxjs';
 import { UiService } from '../services/ui.service';
+import { ActivatedRoute } from '@angular/router';
+import { ItemService } from '../services/item.service';
 
 @Component({
   selector: 'app-add-item',
@@ -13,7 +15,7 @@ export class AddItemComponent {
   showAddItem: boolean = false;
   subscription: Subscription;
 
-  constructor(private uiService: UiService) {
+  constructor(private uiService: UiService, private itemService: ItemService) {
     this.subscription = this.uiService.onToggle().subscribe((value) => {
       this.showAddItem = value;
     });
@@ -28,7 +30,7 @@ export class AddItemComponent {
  
   onSubmit() {
     if (!this.name) {
-      alert('Please add an item');
+      alert('Please add an item name');
       return;
     }
  
@@ -38,8 +40,16 @@ export class AddItemComponent {
       quantity: this.quantity,
       description: this.description
     };
- 
-    this.onAddItem.emit(newItem);
+
+    console.log('add item')
+      this.itemService
+      .addItem(newItem)
+      .subscribe(
+        (item) => {
+          alert('New item "' + item.name + '" added');
+         }
+      );
+    
   }
 
 }
