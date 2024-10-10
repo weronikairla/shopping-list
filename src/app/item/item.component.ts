@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { Item } from '../model/item.model';
 import { ItemService } from '../services/item.service';
 
@@ -11,7 +11,6 @@ export class ItemComponent implements OnInit {
 
   items: Item[] = [];
   @Input() item!: Item;
-  @Output() onDeleteItem: EventEmitter<Item> = new EventEmitter<Item>(); 
 
   constructor(private itemService: ItemService) {
     this.item = { id: 0, name: '', description: '', quantity: 1};
@@ -21,11 +20,6 @@ export class ItemComponent implements OnInit {
     this.itemService.getList().subscribe((items: Item[]) => {
       this.items = items;
     });
-  }
-
-  onDelete(item: Item) {
-    console.log("delete");
-    this.onDeleteItem.emit(item); 
   }
 
 

@@ -11,11 +11,6 @@ export class ItemService {
   private apiBaseUrl = 'http://localhost:3000/items';
  
   constructor(private http: HttpClient) {}
- 
-  deleteItem(id: number): Observable<void> {
-    const url = `${this.apiBaseUrl}/${id}`;
-    return this.http.delete<void>(url);
-  }
 
   addItem(item:Item):Observable<Item>{
     return this.http.post<Item>(this.apiBaseUrl,item)
